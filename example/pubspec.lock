@@ -73,10 +73,11 @@ packages:
   flutter_markdown:
     dependency: "direct main"
     description:
-      name: flutter_markdown
-      sha256: a64c5323ac83ed2b7940d2b6288d160aa1753ff271ba9d9b2a86770414aa3eab
-      url: "https://pub.dev"
-    source: hosted
+      path: "packages/flutter_markdown"
+      ref: HEAD
+      resolved-ref: ff30c874001f3de40c046860ba133b54d69f18c0
+      url: "https://github.com/pzierahn/flutter_packages.git"
+    source: git
     version: "0.6.20+1"
   flutter_markdown_latex:
     dependency: "direct main"
