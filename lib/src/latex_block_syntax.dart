@@ -6,7 +6,7 @@ class LatexBlockSyntax extends BlockSyntax {
   /// Latex block start patterns.
   @override
   RegExp get pattern => RegExp(
-        r'^\${1,2}|^\[',
+        r'^\${1,2}|^\\\[',
         multiLine: true,
       );
 
