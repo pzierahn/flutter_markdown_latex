@@ -13,8 +13,8 @@ class LatexBlockSyntax extends BlockSyntax {
   /// Map of start and end symbols for latex blocks.
   // ignore:
   static const _blockSymbols = <String, String>{
-    '[': ']',
-    '(': ')',
+    '\\[': '\\]',
+    '\\(': '\\)',
     '\$': '\$',
   };
 
