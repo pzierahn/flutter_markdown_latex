@@ -1,6 +1,6 @@
 import 'package:markdown/markdown.dart';
 
-const _latexPattern = r'\$\$(.+?)\$\$|\\\[(.+?)\\\]|\$(.+?)\$|\\\((.+?)\\\)';
+const _latexPattern = r'\$\$(.+?)\$\$|\\\[(.+?)\\\]|\$(.+?)\$|\((.+?)\)';
 
 class LatexInlineSyntax extends InlineSyntax {
   LatexInlineSyntax() : super(_latexPattern);
