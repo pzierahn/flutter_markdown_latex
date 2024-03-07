@@ -1,33 +1,34 @@
 import 'package:markdown/markdown.dart';
 
-const _latexPattern =
-    r'(\\\$|(?<!\\)\${1,2}|\\(?:\(|\[))(.*?)(\\(?:\)|\])|(?<!\\)\${1,2})';
+const _latexPattern = r'\$\$(.+?)\$\$|\\\[(.+?)\\\]|\$(.+?)\$|\\\((.+?)\\\)';
 
 class LatexInlineSyntax extends InlineSyntax {
   LatexInlineSyntax() : super(_latexPattern);
 
   @override
   bool onMatch(InlineParser parser, Match match) {
-    if (match.groupCount < 3) {
-      return false;
+    String? equation;
+    String? mathStyle;
+
+    for (int inx = 1; inx <= match.groupCount; inx++) {
+      equation = match.group(inx);
+
+      if (equation != null) {
+        equation = equation.trim();
+
+        // If the equation is wrapped in double dollar signs, it is a display equation
+        mathStyle = (inx == 1) ? 'display' : 'inline';
+
+        break;
+      }
     }
 
-    final equation = (match[2] ?? '').trim();
-    if (equation.isEmpty) {
+    if (equation == null) {
       return false;
-    }
-
-    String raw = match.group(0) ?? '';
-
-    String mathStyle;
-    if (raw.startsWith('\$\$') && raw.endsWith('\$\$')) {
-      mathStyle = 'display';
-    } else {
-      mathStyle = 'inline';
     }
 
     final element = Element.text('latex', equation);
-    element.attributes['MathStyle'] = mathStyle;
+    element.attributes['MathStyle'] = mathStyle!;
     parser.addNode(element);
 
     return true;
